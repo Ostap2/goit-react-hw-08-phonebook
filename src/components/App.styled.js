@@ -1,21 +1,25 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  width: 800px;
+  max-width: 900px;
   margin-left: auto;
   margin-right: auto;
   padding: 0 15px;
-  h1,
-  h2,
-  h3 {
+  .title {
     text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.2em;
+    margin-top: 1em;
   }
-  h3 {
-    font-size: 15px;
-  }
-  background-color: orange;
-  padding: 10px;
-  border-radius: 20px;
-  border: solid black 3px;
-  color: black;
+`;
+
+export const DivStyle = styled.div`
+  font-size: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5em;
+  margin-top: 2em;
 `;

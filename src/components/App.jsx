@@ -1,25 +1,37 @@
-import { useSelector } from 'react-redux';
-import ContactForm from 'components/Contact/ContactForm/ContactForm';
-import ContactList from 'components/Contact/ContactItem/ContactList';
-import Filter from 'components/Contact/Filter/Filter';
-import { Container } from './App.styled';
+import { ToastContainer } from 'react-toastify';
+
+import { Route, Routes } from 'react-router-dom';
+
+import { Suspense, lazy, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { refreshUser } from 'redux/auth/auth';
+
+import Loading from './Loading/Loading';
+const Layout = lazy(() => import('components/Header/Header'));
+const HomePage = lazy(() => import('pages/HomePage'));
+const RegisterPage = lazy(() => import('pages/RegisterPage'));
+const LoginPage = lazy(() => import('pages/LoginPage'));
+const ContactsPage = lazy(() => import('pages/ContactsPage'));
 
 export default function App() {
-  const { contacts } = useSelector((state) => state.contacts);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(refreshUser());
+  }, [dispatch]);
 
   return (
-    <Container>
-      <h1>Phonebook</h1>
-      <ContactForm />
-      <h2>Contacts</h2>
-      {contacts.length === 0 ? (
-        <h3>No contacts</h3>
-      ) : (
-        <>
-          <Filter />
-          <ContactList />
-        </>
-      )}
-    </Container>
+    <>
+      <Suspense fallback={<Loading />}>
+        <ToastContainer />
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route index element={<HomePage />} />
+            <Route path="contacts" element={<ContactsPage />} />
+            <Route path="register" element={<RegisterPage />} />
+            <Route path="login" element={<LoginPage />} />
+          </Route>
+        </Routes>
+      </Suspense>
+    </>
   );
 }

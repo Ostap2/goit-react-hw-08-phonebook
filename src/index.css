@@ -9,46 +9,54 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  padding: 15px;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-
+a {
+  display: block;
+}
 ul {
+  margin: 0;
   padding: 0;
+  list-style: none;
 }
 p {
   margin: 0;
 }
-
-::-webkit-scrollbar {
-  width: 14px;
+a {
+  transition: transform 0.3s;
+   width: 140px;
+}
+a:hover {
+  transform: translateY(-5px);
+  color: #212529;
 }
 
-
-::-webkit-scrollbar {
-  height: 14px;
+input {
+border-top: none;
+border-left: none;
+border-right: none;
+border-bottom: black solid 1px;
+background-color: transparent;
+transition: 0.2s;
 }
-
-
-::-webkit-scrollbar-thumb {
-  background: orange;
-  border-radius: 6px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #555;
-}
-
-
-::-webkit-scrollbar-track {
-  background: #f1f1f1;
-}
-
-
-::-webkit-scrollbar-button {
-  display: none;
+input:focus {
+border-radius: 18px;
+transition: 1s;
+  }
+  input:hover {
+    border-radius: 18px;
+    transition: 0.1s;
+    border-top: black solid 1px;
+border-left: black solid 1px;
+border-right: black solid 1px;
+      }
+      
+button {
+  text-align: center;
+  line-height: 1;
+  justify-content: center;
 }
